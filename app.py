@@ -4,7 +4,6 @@ import json
 from src.utils import create_options_from_list
 
 from dash import Dash
-import plotly.graph_objects as go
 
 # --------------------------------------------------------------------------- #
 

@@ -1,6 +1,10 @@
 from dash.dependencies import Input, Output
 from dash import ctx
 
+import plotly.graph_objects as go
+
+import numpy as np
+
 from .io import load_file
 from .plotting import subsampled_plot
 from .utils import create_options_from_list
@@ -51,6 +55,8 @@ def get_callbacks(self, app):
                 )
             self.data = data
             self.valid_keys = create_options_from_list(data.keys())
+
+            print(round(data["t"].size/10_000))
 
         # elif any(triggered_id == key for key in \
         #     ['col-selection', 'col-abs-switch', 'col-log-switch']):
