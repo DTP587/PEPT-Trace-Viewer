@@ -8,15 +8,16 @@ def layout_from_options(**options):
     return html.Div(
         [
             html.H3(TITLE),
+            html.Hr(),
             dbc.Row([
                 dbc.Col([
                     html.P('Import Type'),
                     dcc.Dropdown(
                         id="import-selection",
-                        value="raw",
+                        value="txyze",
                         options=options["import-selection"]
                     )
-                ], width=2),
+                ], width=1),
                 dbc.Col([
                     html.P('File'),
                     dcc.Dropdown(
@@ -33,19 +34,22 @@ def layout_from_options(**options):
                     )
                 ], width=1),
                 dbc.Col([
+                    html.P('Subsample'),
+                    dcc.Input(
+                        id="sbsp-input",
+                        type="number",
+                        value=None,
+                        min=1,
+                        max=5000,
+                        step=1,
+                        debounce=True
+                    )
+                ], width=1),
+                dbc.Col([
                     html.P('Color'),
                     dcc.Dropdown(
                         id="col-selection",
                         value='e',
-                        clearable=False
-                    )
-                ], width=1),
-                dbc.Col([
-                    html.P('Downsample'),
-                    dcc.Dropdown(
-                        id="sbsp-selection",
-                        value="200",
-                        options=options["sbsp-selection"], #self.downsampling_options,
                         clearable=False
                     )
                 ], width=1),

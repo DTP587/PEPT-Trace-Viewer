@@ -7,11 +7,15 @@ from scipy.interpolate import interp1d
 def filter_vals(sets, index):
     return [i[index] for i in sets]
 
-def load_file(file_name, interpolate=True, interpolate_gradient=True, drop_zeros=False):
+def load_file(
+    file_name, order="texyz", interpolate=False, interpolate_gradient=False,
+    drop_zeros=False
+):
     """Imports raw data files in ascii or pickle from raw trace files"""
 
     print(f"Loading File: {file_name}")
 
+    # Load in file
     if file_name[-4:] == ".csv":
         # Load csv and dump into pickle file
         with open(file_name, newline='\n') as file:
@@ -39,7 +43,15 @@ def load_file(file_name, interpolate=True, interpolate_gradient=True, drop_zeros
     else:
         raise ValueError(f"Unrecognised file type {file_name}")
 
-    traw, e, x, y, z = raw.T
+
+    # Order contents according to order kwarg
+    if ("texyz" == order):
+        traw, e, x, y, z = raw.T
+    elif ("txyze" == order):
+        traw, x, y, z, e = raw.T
+    else:
+        ValueError(f"order argument: {order} unrecognised")
+
     points = traw.shape[0]
     ti = np.arange(points)
     t = traw

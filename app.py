@@ -4,6 +4,7 @@ import json
 from src.utils import create_options_from_list
 
 from dash import Dash
+import dash_bootstrap_components as dbc
 
 # --------------------------------------------------------------------------- #
 
@@ -19,16 +20,11 @@ for directory in SEARCH_DIRS:
         SEARCH_FILES.append(directory + os.sep + file)
 
 EXTERNAL_STYLESHEETS = [
-    # 'https://codepen.io/chriddyp/pen/bWLwgP.css'
-    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+    dbc.themes.COSMO
 ]
 
-DOWNSAMPLING_OPTIONS = create_options_from_list([
-    "1", "2", "5", "10", "20", "50", "100", "200", "500", "1000", "2000"
-])
-
 IMPORT_TYPE_OPTIONS = create_options_from_list([
-    'raw', 'interpolate'
+    'txyze', 'texyz'
 ])
 
 FILE_OPTIONS = create_options_from_list([
@@ -45,10 +41,10 @@ class PEPT_dash:
         self.saved_fig = {}
         self.xrange = None
         self.valid_keys = None
+        self.subsampling = None
 
         self.options = {
             "file-selection": FILE_OPTIONS,
-            "sbsp-selection": DOWNSAMPLING_OPTIONS,
             "import-selection": IMPORT_TYPE_OPTIONS
         }
 
@@ -62,10 +58,12 @@ class PEPT_dash:
 
 plotter = PEPT_dash()
 
-app = Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
+app = Dash(__name__)
 
 plotter.create_layout(app)
 plotter.get_callbacks(app)
+
+app.config.external_stylesheets = EXTERNAL_STYLESHEETS
 
 if __name__ == '__main__':
     app.run(
