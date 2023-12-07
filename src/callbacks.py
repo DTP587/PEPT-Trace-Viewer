@@ -56,7 +56,9 @@ def get_callbacks(self, app):
             self.data = data
             self.valid_keys = create_options_from_list(data.keys())
 
-            print(round(data["t"].size/10_000))
+            recommended_sampling = round(data["t"].size/10_000) #BUG: 10 000 elements on screen max
+
+            print(f"Recommended Sampling rate: {recommended_sampling}") #BUG: what the default sampling should be for full view
 
         # elif any(triggered_id == key for key in \
         #     ['col-selection', 'col-abs-switch', 'col-log-switch']):
