@@ -22,11 +22,8 @@ Dash is running on http://127.0.0.1:8050/
 
 ## Things to add:
 
-<<<<<<< HEAD
--[x] Recommended subsampling as a default when file is open.
--[x] Dynamic subsampling (subsampling is adjusted on zoom in, only plot points in view).
--[x] Generate requirements.txt
-	- Make it into an actual package
--[x] Reorder the columns on example_data.pkl so that Y and Color are accurate to file output.
--[x] Fix/remove interpolation option for time series.
-	- Changed interpolation to user-defined order of rows.
+ - [x] Recommended subsampling as a default when file is open.
+ - [x] Dynamic subsampling (subsampling is adjusted on zoom in, only plot points in view).
+ - [x] Generate requirements.txt -> Make it into an actual package
+ - [x] Reorder the columns on example_data.pkl so that Y and Color are accurate to file output. -> Changed interpolation to user-defined order of rows.
+ - [x] Fix/remove interpolation option for time series. -> Changed interpolation to user-defined order of rows.
